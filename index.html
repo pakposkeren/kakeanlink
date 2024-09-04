@@ -1,149 +1,106 @@
-html, body {
-	height: 100%;
-	margin: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nganuaja</title>
+	<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kakean Link Disatuin!</h1>
+        <p>Monggo Dipilih Anunya Sesuai Selera :</p>
+        <small>by : pakposkeren (lagi)</small>
 
-body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	margin: 0;
-	padding: 0;
-	background: linear-gradient(to right, rgba(0, 123, 255, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1534196511436-921a4e99f297?fit=crop&w=1500&q=80') no-repeat center center fixed;
-	background-size: cover;
-	color: #fff;
-	text-align: center;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-h1 {
-	font-size: 2.5rem;
-	margin-bottom: -20px;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-p {
-	font-size: 1.2rem;
-	margin-bottom: 10px;
-}
-
-small {
-	margin-bottom: 40px;
-}
-
-.container {
-	padding: 20px;
-	background-color: rgba(0, 0, 0, 0.5);
-	border-radius: 0;
-	width: 100%;
-	min-height: 100vh;
-	margin: 0;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	overflow: auto;
-}
-
-.content {
-	flex-grow: 1;
-}
-
-.link-wrapper {
-	position: relative;
-	z-index: 1;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 20px;
-	max-width: 100%;
-	flex-grow: 1;
-}
-
-.service-box {
-	background-color: rgba(255, 255, 255, 0.2);
-	padding: 15px 20px;
-	border-radius: 15px;
-	text-align: center;
-	transition: background-color 0.3s ease, transform 0.3s ease;
-	min-height: 150px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.service-box i {
-	font-size: 2rem;
-	color: #fff;
-	margin-bottom: 10px;
-}
-
-.service-box h3 {
-	font-size: 1.2rem;
-	margin: 10px 0;
-	color: #fff;
-	margin-top: 10px;
-	margin-bottom: 5px;
-}
-
-.service-box p {
-	font-size: 1rem;
-	margin: 0;
-	padding: 1px 0;
-	flex-grow: 1;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-break: break-word;
-}
-
-.service-box:hover {
-	background-color: rgba(255, 255, 255, 0.4);
-	// transform: translateY(-5px);
-	transform: scale(1.05);
-}
-
-.container::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-}
-a {
-	text-decoration: none;
-	color: inherit;
-	pointer-events: auto;
-}
-
-@media (max-width: 768px) {
-	h1 {
-		font-size: 2rem;
-	}
-	p {
-		font-size: 1rem;
-	}
-	.link-wrapper {
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	}
-}
-
-@media (max-width: 480px) {
-	h1 {
-		font-size: 1.5rem;
-	}
-	p {
-		font-size: 0.9rem;
-	}
-	.service-box i {
-		font-size: 1.5rem;
-	}
-	.service-box h3 {
-		font-size: 1rem;
-	}
-	.service-box p {
-		font-size: 0.8rem;
-	}
-}
+        <div class="link-wrapper">
+			<a href="https://emeterai.posfin.id/backoffice/login?return=backoffice" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-shopping-bag"></i>
+					<h3>Transaksi E-Meterai</h3>
+					<p>Dipake buat beli e-meterai. Kemudian lakukan pembayaran Virtual Account pada aplikasi Pospay.<br>(Website)</p>
+				</div>
+			</a>
+			<a href="https://board.mile.app/login?nextUrl=%2Fapp%2Fkibana%23%2Fdashboards%3F_g%3Dh%4091607d6#?_g=()" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-tachometer-alt"></i>
+					<h3>Kibana</h3>
+					<p>Dipake buat keperluan dashboard, cek transaksi dan lain sebagainya. Kalo kamu bisa ini, berarti pinter.<br>(Website)</p>
+				</div>
+			</a>
+			<a href="https://bit.ly/4d9RZ51" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-flag-checkered"></i>
+					<h3>Dashboard Racing</h3>
+					<p>Dipake buat input data transaksi racing harian. Kalo kamu sering buka ini berarti rajin.<br>(Google Docs)</p>
+				</div>
+			</a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLScOVHTXpzQ1-KXxsAZ3W53vXaVDJ_T5cxrMfJpf8yPgRg3FVQ/viewform?usp=sf_link" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-hat-cowboy"></i>
+					<h3>Digitalisasi Pensiun</h3>
+					<p>Dipake buat input data pensiunan biar jadi rek Oren. Kayaknya sih gitu.<br>(Google Forms)</p>
+				</div>
+			</a>
+			<a href="https://docs.google.com/spreadsheets/d/1fACHc2Q1rCtAjg_FsCTTxXfwSE6tuVkaDhbaYA6IZIE/edit?gid=0#gid=0" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-people-arrows"></i>
+					<h3>Churn Customers</h3>
+					<p>Dipake buat nyari data customers sekitar kalian. Ingat, buat nganu pelanggan lho ya.<br>(Google Docs)</p>
+				</div>
+			</a>
+			<a href="https://docs.google.com/spreadsheets/d/1d1f0_WQegAsBt21H2CUfnG3WZMIJQb_gtmfkfohOjgk/edit?gid=2145342305#gid=2145342305" target="_blank">
+				<div class="service-box">
+					<i class="far fa-clock"></i>
+					<h3>Jam Buka Loket</h3>
+					<p>Dipake buat pengawasan jam buka loket. Dipantau teroooosss!!<br>(Google Docs)</p>
+				</div>
+			</a>
+			<a href="https://pgcreport.posindonesia.co.id:8011/login" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-hands-helping"></i>
+					<h3>PGC Report</h3>
+					<p>Dipake buat cek transaksi bansos. Mumet dah!<br>(Website)</p>
+				</div>
+			</a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSd6UoerhkThPvj0c_2oP_Jz9EDeqTAuCybMCM6JRv-FVPuI4Q/viewform?usp=sf_link" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-american-sign-language-interpreting"></i>
+					<h3>Pembukaan Agen</h3>
+					<p>Dipake buat pembukaan agen. Bakal nambah ngga tuh?<br>(Google Forms)</p>
+				</div>
+			</a>
+			<a href="https://forms.gle/kkSrGcMgCXbUnUJJ8" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-map-marked-alt"></i>
+					<h3>Drop Point</h3>
+					<p>Dipake buat pengajuan Drop Point atau Oranger Toko. Nambah outlet dah!<br>(Google Forms)</p>
+				</div>
+			</a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSeujSIpHIgwvuy6yc6ESZh8EgkY3dZ2iRiGn1TZJ8lnAv2n1w/viewform?usp=sf_link" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-wallet"></i>
+					<h3>Transaksi Pospay</h3>
+					<p>Dipake buat entri transaksimu melalui pospay. Diabsen lagi ya kan?<br>(Google Forms)</p>
+				</div>
+			</a>
+			<a href="https://edupos.posindonesia.co.id" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-graduation-cap"></i>
+					<h3>Edupos</h3>
+					<p>Dipake buat ujian-ujian dan ujian aja!<br>(Website)</p>
+				</div>
+			</a>
+			<a href="https://www.google.com/maps/d/edit?mid=1YEphrT19mB1sS_RW6nxxOG_6o8U_Ve0&ll=-7.7266205181325756%2C110.35015698955078&z=12" target="_blank">
+				<div class="service-box">
+					<i class="fas fa-map-marker-alt"></i>
+					<h3>Lokasi Kantor</h3>
+					<p>Dipake buat cari tau alamat kantor pos!<br>(Maps)</p>
+				</div>
+			</a>
+        </div>
+    </div>
+</body>
+</html>
