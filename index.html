@@ -1,3 +1,16 @@
+<?php
+$csvFile = 'data/links.csv';
+
+$rows = array();
+if (($handle = fopen($csvFile, 'r')) !== FALSE) {
+    while (($data = fgetcsv($handle)) !== FALSE) {
+        $rows[] = $data;
+    }
+    fclose($handle);
+}
+
+$header = array_shift($rows);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +70,8 @@
 		}
 
 		.link-wrapper {
+			position: relative;
+			z-index: 1;
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			gap: 20px;
@@ -95,16 +110,30 @@
 			margin: 0;
 			padding: 1px 0;
 			flex-grow: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-word;
 		}
 
 		.service-box:hover {
-			background-color: rgba(255, 255, 255, 0.2);
-			transform: translateY(-5px);
+			background-color: rgba(255, 255, 255, 0.4);
+			// transform: translateY(-5px);
+			transform: scale(1.05);
 		}
 
+		.container::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
 		a {
 			text-decoration: none;
 			color: inherit;
+			pointer-events: auto;
 		}
 
 		@media (max-width: 768px) {
@@ -132,6 +161,9 @@
 			.service-box h3 {
 				font-size: 1rem;
 			}
+			.service-box p {
+				font-size: 0.8rem;
+			}
 		}
     </style>
 </head>
@@ -141,101 +173,18 @@
         <p>Monggo Dipilih Anunya Sesuai Selera :</p>
 
         <div class="link-wrapper">
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-smile"></i>
-                    <h3>Satu</h3>
-					<p>nanana nanana nananananana nanana nanana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-star"></i>
-                    <h3>Dua</h3>
-					<p>nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-heart"></i>
-                    <h3>Tiga</h3>
-					<p>nanana nanana nanana nanananananananana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-smile"></i>
-                    <h3>Satu</h3>
-					<p>nananananana nananananana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-star"></i>
-                    <h3>Dua</h3>
-					<p>nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-heart"></i>
-                    <h3>Tiga</h3>
-					<p>nanana nananananana nananananana nanana</p>
-                </div>
-            </a>
-			
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-smile"></i>
-                    <h3>Satu</h3>
-					<p>nanana nanana nananananana nanana nanana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-star"></i>
-                    <h3>Dua</h3>
-					<p>nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-heart"></i>
-                    <h3>Tiga</h3>
-					<p>nanana nanana nanana nanananananananana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-smile"></i>
-                    <h3>Satu</h3>
-					<p>nananananana nananananana nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-star"></i>
-                    <h3>Dua</h3>
-					<p>nanana</p>
-                </div>
-            </a>
-
-            <a href="https://www.example.com" target="_blank">
-                <div class="service-box">
-                    <i class="fas fa-heart"></i>
-                    <h3>Tiga</h3>
-					<p>nanana nananananana nananananana nanana</p>
-                </div>
-            </a>
+            <?php foreach ($rows as $row): ?>
+                <?php
+                list($icon, $link, $title, $description) = $row;
+                ?>
+                <a href="<?php echo htmlspecialchars($link); ?>" target="_blank">
+                    <div class="service-box">
+                        <i class="fas <?php echo htmlspecialchars($icon); ?>"></i>
+                        <h3><?php echo htmlspecialchars($title); ?></h3>
+                        <p><?php echo htmlspecialchars($description); ?></p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
