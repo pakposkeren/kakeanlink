@@ -25,7 +25,6 @@ $data = readFromCsv($filename);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         if ($_POST['action'] === 'add') {
-            // Add new link
             $newRow = [
                 count($data) + 1,
                 $_POST['icon'],
@@ -36,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data[] = $newRow;
             writeToCsv($filename, $data);
             header('Location: index.php');
+            exit();
         } elseif ($_POST['action'] === 'delete') {
-            // Delete selected link
             $index = $_POST['deleteIndex'];
             array_splice($data, $index, 1);
-            // Update IDs
             foreach ($data as $i => $row) {
                 $data[$i][0] = $i + 1;
             }
             writeToCsv($filename, $data);
             header('Location: index.php');
+            exit();
         }
     }
 }
