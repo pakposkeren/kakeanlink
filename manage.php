@@ -1,82 +1,51 @@
 <?php
-$filename = 'data/links.csv'; // File CSV yang menyimpan data link
-$indexHtml = 'index.html';
-
-// Fungsi untuk menulis data ke file CSV
-function writeToCsv($filename, $data) {
-    $file = fopen($filename, 'w');
-    foreach ($data as $row) {
-        fputcsv($file, $row);
-    }
-    fclose($file);
-}
-
-// Fungsi untuk membaca data dari file CSV
 function readFromCsv($filename) {
     $data = [];
-    if (($file = fopen($filename, 'r')) !== FALSE) {
-        while (($row = fgetcsv($file)) !== FALSE) {
+    if (($handle = fopen($filename, 'r')) !== false) {
+        while (($row = fgetcsv($handle)) !== false) {
             $data[] = $row;
         }
-        fclose($file);
+        fclose($handle);
     }
     return $data;
 }
 
-// Fungsi untuk menulis data ke index.html
-function updateIndexHtml($data, $indexHtml) {
-    $html = '<body>
-        <div class="container">
-            <h1>Kakean Link Disatuin!</h1>
-            <p>Monggo Dipilih Anunya Sesuai Selera :</p>
-            <div class="link-wrapper">';
-    foreach ($data as $row) {
-        list($icon, $link, $title, $description) = $row;
-        $html .= "<a href=\"$link\" target=\"_blank\">
-            <div class=\"service-box\">
-                <i class=\"$icon\"></i>
-                <h3>$title</h3>
-                <p>$description</p>
-            </div>
-        </a>";
+function writeToCsv($filename, $data) {
+    if (($handle = fopen($filename, 'w')) !== false) {
+        foreach ($data as $row) {
+            fputcsv($handle, $row);
+        }
+        fclose($handle);
     }
-    $html .= '</div>
-        </div>
-    </body>';
-    file_put_contents($indexHtml, $html);
 }
 
-// Menangani form submission
+$filename = 'data/links.csv';
+$data = readFromCsv($filename);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
-
-    // Tambah data
-    if ($action === 'add') {
-        $icon = $_POST['icon'];
-        $link = $_POST['link'];
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        
-        $data = readFromCsv($filename);
-        $data[] = [$icon, $link, $title, $description];
-        writeToCsv($filename, $data);
-        updateIndexHtml($data, $indexHtml);
-        echo "Link added successfully.";
-    }
-
-    // Hapus data
-    if ($action === 'delete') {
-        $indexToDelete = (int)$_POST['deleteIndex'];
-        
-        $data = readFromCsv($filename);
-        if (isset($data[$indexToDelete])) {
-            unset($data[$indexToDelete]);
-            $data = array_values($data); // Re-index array
+    if (isset($_POST['action'])) {
+        if ($_POST['action'] === 'add') {
+            // Add new link
+            $newRow = [
+                count($data) + 1,
+                $_POST['icon'],
+                $_POST['link'],
+                $_POST['title'],
+                $_POST['description']
+            ];
+            $data[] = $newRow;
             writeToCsv($filename, $data);
-            updateIndexHtml($data, $indexHtml);
-            echo "Link deleted successfully.";
-        } else {
-            echo "Invalid index.";
+            header('Location: index.php');
+        } elseif ($_POST['action'] === 'delete') {
+            // Delete selected link
+            $index = $_POST['deleteIndex'];
+            array_splice($data, $index, 1);
+            // Update IDs
+            foreach ($data as $i => $row) {
+                $data[$i][0] = $i + 1;
+            }
+            writeToCsv($filename, $data);
+            header('Location: index.php');
         }
     }
 }
