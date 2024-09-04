@@ -1,16 +1,3 @@
-<?php
-$csvFile = 'data/links.csv';
-
-$rows = array();
-if (($handle = fopen($csvFile, 'r')) !== FALSE) {
-    while (($data = fgetcsv($handle)) !== FALSE) {
-        $rows[] = $data;
-    }
-    fclose($handle);
-}
-
-$header = array_shift($rows);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,6 +160,33 @@ $header = array_shift($rows);
         <p>Monggo Dipilih Anunya Sesuai Selera :</p>
 
         <div class="link-wrapper">
+            <?php
+            $csvFile = 'data/links.csv';
+
+            $rows = array();
+            if (($handle = fopen($csvFile, 'r')) !== FALSE) {
+                fgetcsv($handle);
+
+                while (($data = fgetcsv($handle)) !== FALSE) {
+                    $rows[] = $data;
+                }
+                fclose($handle);
+            }
+
+            foreach ($rows as $row):
+                list($id, $icon, $link, $title, $description) = $row;
+            ?>
+                <a href="<?php echo htmlspecialchars($link); ?>" target="_blank">
+                    <div class="service-box">
+                        <i class="fas <?php echo htmlspecialchars($icon); ?>"></i>
+                        <h3><?php echo htmlspecialchars($title); ?></h3>
+                        <p><?php echo htmlspecialchars($description); ?></p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+		
+       <!-- <div class="link-wrapper">
             <?php foreach ($rows as $row): ?>
                 <?php
                 list($icon, $link, $title, $description) = $row;
@@ -185,7 +199,7 @@ $header = array_shift($rows);
                     </div>
                 </a>
             <?php endforeach; ?>
-        </div>
+        </div>-->
     </div>
 </body>
 </html>
