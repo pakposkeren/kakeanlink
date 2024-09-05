@@ -27,7 +27,7 @@
 				<div class="service-box">
 					<i class="fas fa-graduation-cap"></i>
 					<h3>Edupos</h3>
-					<p>Dipake buat ujian-ujian dan ujian aja!<br>(Website)</p>
+					<p>Dipake buat ujian, ujian dan ujian aja!<br>(Website)</p>
 				</div>
 			</a>
 			<a href="https://pgcreport.posindonesia.co.id:8011/login" target="_blank">
@@ -135,6 +135,32 @@
 				</div>
 			</a>
         </div>
+		
+		
     </div>
+	
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+	<script>
+		document.querySelector('.back-to-top').addEventListener('click', function (e) {
+			e.preventDefault();
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		});
+
+		window.addEventListener('scroll', function () {
+			const backToTopButton = document.querySelector('.back-to-top');
+			if (window.scrollY > 300) {
+				backToTopButton.classList.add('show');
+			} else {
+				backToTopButton.classList.remove('show');
+			}
+		});
+	</script>
+
 </body>
 </html>
