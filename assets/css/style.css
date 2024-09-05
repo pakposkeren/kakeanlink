@@ -11,11 +11,6 @@ body {
 	background-size: cover;
 	color: #fff;
 	text-align: center;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 }
 
 h1 {
@@ -36,7 +31,6 @@ small {
 .container {
 	padding: 20px;
 	background-color: rgba(0, 0, 0, 0.5);
-	border-radius: 0;
 	width: 100%;
 	min-height: 100vh;
 	margin: 0;
@@ -53,7 +47,6 @@ small {
 
 .link-wrapper {
 	position: relative;
-	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 20px;
@@ -99,7 +92,6 @@ small {
 
 .service-box:hover {
 	background-color: rgba(255, 255, 255, 0.4);
-	// transform: translateY(-5px);
 	transform: scale(1.05);
 }
 
@@ -112,6 +104,7 @@ small {
 	height: 100%;
 	pointer-events: none;
 }
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -150,4 +143,45 @@ a {
 	.service-box p {
 		font-size: 0.6rem;
 	}
+}
+
+.back-to-top {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	background-color: white;
+	color: #003366;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 999;
+}
+
+.back-to-top i {
+	font-size: 1.5rem;
+	color: #003366;
+}
+
+.back-to-top:hover {
+	background-color: #f2f2f2;
+	transform: scale(1.1);
+}
+
+.back-to-top:active {
+	transform: scale(0.95);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.show {
+	opacity: 1;
+	visibility: visible;
 }
