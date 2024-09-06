@@ -25,7 +25,7 @@ p {
 }
 
 small {
-	margin-bottom: 40px;
+	margin-bottom: -20px;
 }
 
 .container {
@@ -54,7 +54,26 @@ small {
 	flex-grow: 1;
 }
 
-.service-box {
+.kategori {
+	background-color: rgba(255, 255, 255, 0.2);
+	margin-top: 50px;
+	margin-bottom: 20px;
+	border-radius: 15px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.kategori h3 {
+	font-size: 1.2rem;
+	margin: 10px 0;
+	color: #fff;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.menu {
 	background-color: rgba(255, 255, 255, 0.2);
 	padding: 15px 20px;
 	border-radius: 15px;
@@ -66,13 +85,13 @@ small {
 	justify-content: space-between;
 }
 
-.service-box i {
+.menu i {
 	font-size: 2rem;
 	color: #fff;
 	margin-bottom: 10px;
 }
 
-.service-box h3 {
+.menu h3 {
 	font-size: 1.2rem;
 	margin: 10px 0;
 	color: #fff;
@@ -80,7 +99,7 @@ small {
 	margin-bottom: 5px;
 }
 
-.service-box p {
+.menu p {
 	font-size: 1rem;
 	margin: 0;
 	padding: 1px 0;
@@ -90,7 +109,7 @@ small {
 	word-break: break-word;
 }
 
-.service-box:hover {
+.menu:hover {
 	background-color: rgba(255, 255, 255, 0.4);
 	transform: scale(1.05);
 }
@@ -132,15 +151,18 @@ a {
 		font-size: 0.8rem;
 	}
 	small {
-		margin-bottom: 20px;
+		margin-bottom: -20px;
 	}
-	.service-box i {
-		font-size: 1.5rem;
-	}
-	.service-box h3 {
+	.kategori h3 {
 		font-size: 0.9rem;
 	}
-	.service-box p {
+	.menu i {
+		font-size: 1.5rem;
+	}
+	.menu h3 {
+		font-size: 0.9rem;
+	}
+	.menu p {
 		font-size: 0.6rem;
 	}
 }
