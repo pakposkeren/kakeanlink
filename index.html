@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>nganuaja</title>
-	<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/img/pakposkeren.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Kakean Link Disatuin!</h1>
-		<marquee><i>Mumet scroll nyari link di grup Whatsapp?? Nih dah disatuin disini. Makasih ya..!</i> <i class="far fa-smile-beam"></i></marquee>
+		<marquee><i>Mumet scroll <sup>2</sup> nyari link di grup Whatsapp?? Nih dah disatuin disini. Makasih ya..!</i> <i class="far fa-smile-beam"></i></marquee>
 
 		<small id="typing-text"></small>
 
@@ -282,19 +282,40 @@
 			}
 		});
 	</script>
-	<script>
-		const text = "by : pakposkeren (lagi)";
-		let index = 0;
-		
-		function typeWriter() {
-			if (index < text.length) {
-				document.getElementById("typing-text").innerHTML += text.charAt(index);
-				index++;
-				setTimeout(typeWriter, 100);
-			}
-		}
-		
-		window.onload = typeWriter;
-	</script>
+    <script>
+        const text = 'by : ';
+        const text2 = ' pakposkeren';
+        const imageHTML = '<img src="assets/img/pakposkeren.png" alt="pakposkeren" height="13" style:"vertical-align: middle; margin-top:10px;">';
+        let index = 0;
+        let phase = 0; // Menandakan fase saat ini: 0 = teks, 1 = gambar, 2 = teks2
+
+        function typeWriter() {
+            if (phase === 0) {
+                if (index < text.length) {
+                    document.getElementById("typing-text").innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    phase = 1; // Beralih ke fase gambar
+                    index = 0; // Reset index untuk fase gambar
+                    setTimeout(typeWriter, 100); // Mulai fase gambar
+                }
+            } else if (phase === 1) {
+                // Menambahkan gambar
+                document.getElementById("typing-text").innerHTML += imageHTML;
+                phase = 2; // Beralih ke fase teks2
+                index = 0; // Reset index untuk fase teks2
+                setTimeout(typeWriter, 100); // Mulai fase teks2
+            } else if (phase === 2) {
+                if (index < text2.length) {
+                    document.getElementById("typing-text").innerHTML += text2.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
 </body>
 </html>
