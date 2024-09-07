@@ -26,6 +26,7 @@ p {
 
 marquee {
 	font-size: 1rem;
+	animation: marquee 10s linear infinite;
 	margin-bottom: 10px;
 }
 
