@@ -12,8 +12,9 @@
 <body>
     <div class="container">
         <h1>Kakean Link Disatuin!</h1>
-        <p>Monggo Dipilih Anunya Sesuai Selera :</p>
-        <small>by : pakposkeren (lagi)</small>
+		<marquee>Mumet scroll nyari link di grup Whatsapp?? Nih dah disatuin disini. Makasih ya..!</marquee>
+
+		<small id="typing-text"></small>
 
         <div class="link-wrapper">
 			<div class="kategori">
@@ -48,20 +49,6 @@
 					<i class="fas fa-qrcode"></i>
 					<h3>QRIS Pos</h3>
 					<p>Dipake buat cek transaksi Qris loket.</p>
-				</div>
-			</a>
-		        <a href="https://resi.posindonesia.co.id/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-print"></i>
-					<h3>Cetak Ulang Resi</h3>
-					<p>Dipake buat cetak ulang resi pospay.</p>
-				</div>
-			</a>
-		        <a href="https://hcm-prod.posindonesia.co.id/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-user-lock"></i>
-					<h3>Download Presensi</h3>
-					<p>Dipake buat download aplikasi presensi Livie.</p>
 				</div>
 			</a>
 			<a href="https://task.mile.app/login" target="_blank">
@@ -295,6 +282,19 @@
 			}
 		});
 	</script>
-
+	<script>
+		const text = "by : pakposkeren (lagi)";
+		let index = 0;
+		
+		function typeWriter() {
+			if (index < text.length) {
+				document.getElementById("typing-text").innerHTML += text.charAt(index);
+				index++;
+				setTimeout(typeWriter, 100);
+			}
+		}
+		
+		window.onload = typeWriter;
+	</script>
 </body>
 </html>
