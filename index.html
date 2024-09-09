@@ -1,288 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>nganuaja</title>
+
 	<link rel="icon" href="assets/img/pakposkeren.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+		body, html {
+			height: 100%;
+			margin: 0;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.hero-background {
+			background: linear-gradient(to right, rgba(0, 0, 40, 0.7), rgba(40, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1534196511436-921a4e99f297?fit=crop&w=1500&q=80') no-repeat center center fixed;
+			background-size: cover;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			text-align: center;
+		}
+
+		h1 {
+			padding-top: 50px;
+			font-size: 2.5rem;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
+		marquee {
+			font-size: 1rem;
+			margin-top: -10px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
+		p {
+			font-size: 1.5rem;
+			margin-bottom: 10px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
+		.menu {
+			background-color: rgba(100, 100, 100, 0.6);
+			padding: 15px 20px;
+			border-radius: 10px;
+			text-align: center;
+			transition: background-color 0.3s ease, transform 0.3s ease;
+			min-height: 150px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			color: white;
+			text-decoration: none;
+			cursor: pointer;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
+		.menu a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.menu:hover {
+			background-color: rgba(200, 200, 200, 0.5);
+			transform: scale(1.05);
+			color: white;
+		}
+
+		.menu a:hover {
+			text-decoration: none;
+		}
+
+		.menu i {
+			font-size: 2rem;
+			margin-bottom: 10px;
+		}
+
+		.menu h3 {
+			margin: 0;
+			padding: 1px 0;
+			font-size: 1.2rem;
+		}
+		
+		.menu p {
+			margin: 0;
+			padding: 1px 0;
+			font-size: 0.9rem;
+		}
+
+		.category-section {
+			background-color: rgba(100, 100, 100, 0.6);
+			padding: 10px;
+			border-radius: 10px;
+			width: 100%;
+			max-width: 1070px;
+			margin: 0 auto;
+			text-align: center;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+			margin-top: 30px;
+			margin-bottom: 3px;
+		}
+
+		.category-section h2 {
+			font-size: 1.5rem;
+			margin: 0;
+			color: white;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		}
+		
+		.link-wrapper {
+			display: grid;
+			gap: 20px;
+			padding: 20px;
+			width: 100%;
+		}
+
+		@media (min-width: 992px) {
+			.link-wrapper {
+				grid-template-columns: repeat(6, 1fr);
+			}
+		}
+
+		@media (max-width: 767px) {
+			h1 {
+				padding-top: 50px;
+				font-size: 1.6rem;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+			}
+			
+			marquee {
+				font-size: 0.7rem;
+				margin-top: -20px;
+				margin-left: 35px;
+				margin-right: 35px;
+			}
+			
+			.category-section {
+				max-width: 82%;
+			    margin-top: 20px;
+				margin-bottom: 3px;
+			}
+
+			.category-section h2 {
+				font-size: 1.1rem;
+			}
+			
+			p {
+				font-size: 1rem;
+				margin-bottom: 10px;
+			}
+			
+			.link-wrapper {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			
+			.menu i {
+				font-size: 1.5rem;
+			}
+			
+			.menu h3 {
+				font-size: 1rem;
+			}
+			
+			.menu p {
+				font-size: 0.7rem;
+			}
+		}
+
+		.back-to-top {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			width: 50px;
+			height: 50px;
+			background-color: white;
+			color: black;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+			opacity: 0;
+			visibility: hidden;
+			z-index: 999;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.back-to-top:hover {
+		text-decoration: none;
+			transform: scale(1.1);
+		}
+
+		.back-to-top a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.back-to-top i {
+			font-size: 1.5rem;
+		}
+
+		.back-to-top.show {
+			opacity: 1;
+			visibility: visible;
+		}
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Kakean Link Disatuin!</h1>
-		<marquee><i>Mumet scroll <sup>2</sup> nyari link di grup Whatsapp?? Hmm.. Nih dah disatuin disini. Makasih ya..! Yaa... </i> <i class="far fa-smile-beam"></i></marquee>
+    <div class="hero-background">
+        <div>
+            <h1>Kakean Link Disatuin!</h1>
+			<marquee><i>Mumet scroll <sup>2</sup> nyari link di grup Whatsapp?? Hmm.. Nih dah disatuin disini. Makasih ya..! Yaa... Wkwkwkwk! </i> <i class="far fa-smile-beam"></i></marquee>
+            <small id="typing-text"></small>
 
-		<small id="typing-text"></small>
-
-        <div class="link-wrapper">
-			<div class="kategori">
-				<h3>~ W E B S I T E ~</h3>
+			<div class="category-section">
+				<h2>W e b s i t e</h2>
+			</div>			
+            
+			<div class="container">
+                <div class="link-wrapper">
+                    <div class="menu">
+                        <a href="https://www.posindonesia.co.id/id" target="_blank">
+                            <i class="fas fa-search-dollar"></i>
+                            <h3 class="mb-1">Cek Tarif</h3>
+							<p>Web untuk cek tarif kiriman.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://www.posindonesia.co.id/id/tracking" target="_blank">
+                            <i class="fas fa-search"></i>
+                            <h3 class="mb-1">Lacak #1 Kiriman Web Pos</h3>
+							<p>Web untuk lacak kiriman.</p>
+                        </a>
+                    </div>
+					
+					<div class="menu">
+						<a href="javascript:void(0)" id="openModal" data-toggle="modal" data-target="#lacakModal">
+							<i class="fas fa-search"></i>
+							<h3>Lacak #2 Kiriman Kibana</h3>
+							<p>Web untuk lacak kiriman langsung isi nomor resi.</p>
+						</a>
+					</div>
+					
+					<div class="modal fade" id="lacakModal" tabindex="-1" role="dialog" aria-labelledby="lacakModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="lacakModalLabel" style="color:black;">Lacak Kiriman</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body text-left">
+									<label style="color:black;">Masukkan Nomor Resi :</label>
+									<input type="text" id="resiInput" class="form-control" placeholder="">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-chevron-left mr-1"></i> Batal</button>
+									<button type="button" id="lacakButton" class="btn btn-primary">Lacak <i class="fas fa-search ml-1"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+					<div class="menu">
+                        <a href="https://emeterai.posfin.id/backoffice/login?return=backoffice" target="_blank">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3 class="mb-1">E-Meterai</h3>
+							<p>Web untuk pembelian e-meterai.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://qrispos.posindonesia.co.id/auth/login" target="_blank">
+                            <i class="fas fa-qrcode"></i>
+                            <h3 class="mb-1">QRIS Pos</h3>
+							<p>Web untuk cek transaksi Qris.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://task.mile.app/login" target="_blank">
+                            <i class="fas fa-mail-bulk"></i>
+                            <h3 class="mb-1">Mile App</h3>
+							<p>Web untuk transaksi Mile loket.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://wahana.posindonesia.co.id/" target="_blank">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3 class="mb-1">Wahana</h3>
+							<p>Web untuk buka wahana.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://edupos.posindonesia.co.id" target="_blank">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3 class="mb-1">Edupos</h3>
+							<p>Web untuk ujian.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://pgcreport.posindonesia.co.id:8011/login" target="_blank">
+                            <i class="fas fa-hands-helping"></i>
+                            <h3 class="mb-1">PGC Report</h3>
+							<p>Web untuk cek transaksi bansos.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="http://helpdesk.posindonesia.co.id/" target="_blank">
+                            <i class="fas fa-question-circle"></i>
+                            <h3 class="mb-1">Helpdesk</h3>
+							<p>Web untuk cek kode error transaksi Pospay & RS.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://board.mile.app/login?nextUrl=%2Fapp%2Fkibana%23%2Fdashboards%3F_g%3Dh%4091607d6#?_g=()" target="_blank">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h3 class="mb-1">Kibana</h3>
+							<p>Web untuk dashboard, cek transaksi dan lain sebagainya.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://lacak-ktpel.posindonesia.co.id:8183/" target="_blank">
+                            <i class="fas fa-id-card"></i>
+                            <h3 class="mb-1">Lacak KTP</h3>
+							<p>Web untuk pelacakan KTP online.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://inatrims.kemendag.go.id/" target="_blank">
+                            <i class="fas fa-plane"></i>
+                            <h3 class="mb-1">INATRIMS</h3>
+							<p>Web informasi tentang regulasi teknis dan persyaratan mutu di negara tujuan ekspor.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://bit.ly/RacingFrontingKresun_2024" target="_blank">
+                            <i class="fas fa-blind"></i>
+                            <h3 class="mb-1">Racing Kresun</h3>
+							<p>Web untuk racing fronting kresun.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="category-section">
+				<h2>Google Docs / Forms / Maps</h2>
+			</div>	
+			
+			<div class="container">
+                <div class="link-wrapper">
+					<div class="menu">
+                        <a href="https://bit.ly/4d9RZ51" target="_blank">
+                            <i class="fas fa-flag-checkered"></i>
+                            <h3 class="mb-1">Dashboard Racing</h3>
+						<p>Google Docs untuk keperluan input data transaksi racing harian.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScOVHTXpzQ1-KXxsAZ3W53vXaVDJ_T5cxrMfJpf8yPgRg3FVQ/viewform?usp=sf_link" target="_blank">
+                            <i class="fas fa-hat-cowboy"></i>
+                            <h3 class="mb-1">Digitalisasi Pensiun</h3>
+							<p>Google Forms untuk keperluan input data pensiunan ke rekening Oren.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSejXdXJgl8Ur-7w3zasT-KjVAsd4bGxBDydsaMdQiKjI_NjcA/viewform" target="_blank">
+                            <i class="far fa-check-square"></i>
+                            <h3 class="mb-1">Uji Petik</h3>
+							<p>Google Forms untuk keperluan uji petik kiriman setiap hari.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdY4uPGhX5s0NfWe3SkUs9R09iQOyTXFb6NL8CX3nhPJssitQ/viewform" target="_blank">
+                            <i class="far fa-sticky-note"></i>
+					<h3 class="mb-1">Warung Meterai</h3>
+					<p>Google Forms untuk laporan penempelan stiker meterai.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://bit.ly/LKPP_KO6" target="_blank">
+                           <i class="fas fa-asterisk"></i>
+							<h3 class="mb-1">LKPP Taspen</h3>
+							<p>Google Forms untuk keperluan pengisian LKPP Taspen.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/spreadsheets/d/1fACHc2Q1rCtAjg_FsCTTxXfwSE6tuVkaDhbaYA6IZIE/edit?gid=0#gid=0" target="_blank">
+							<i class="fas fa-people-arrows"></i>
+							<h3 class="mb-1">Churn Customers</h3>
+							<p>Google Docs untuk pencarian data customers diwilayah kerja.</p>
+						</a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/spreadsheets/d/1d1f0_WQegAsBt21H2CUfnG3WZMIJQb_gtmfkfohOjgk/edit?gid=2145342305#gid=2145342305" target="_blank">
+                            <i class="fas fa-clock"></i>
+							<h3 class="mb-1">Jam Buka Loket</h3>
+							<p>Google Docs untuk pengawasan jam buka loket.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6UoerhkThPvj0c_2oP_Jz9EDeqTAuCybMCM6JRv-FVPuI4Q/viewform?usp=sf_link" target="_blank">
+                            <i class="fas fa-american-sign-language-interpreting"></i>
+							<h3 class="mb-1">Pembukaan Agenpos</h3>
+							<p>Google Forms untuk keperluan pembukaan agen.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://forms.gle/kkSrGcMgCXbUnUJJ8" target="_blank">
+                            <i class="fas fa-store"></i>
+							<h3 class="mb-1">Drop Point</h3>
+							<p>Google Forms untuk keperluan pengajuan Drop Point atau Oranger Toko.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeujSIpHIgwvuy6yc6ESZh8EgkY3dZ2iRiGn1TZJ8lnAv2n1w/viewform?usp=sf_link" target="_blank">
+                            <i class="fas fa-wallet"></i>
+							<h3 class="mb-1">Transaksi Pospay</h3>
+							<p>Google Forms untuk entri transaksi milik petugas melalui pospay loket.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://www.google.com/maps/d/edit?mid=1YEphrT19mB1sS_RW6nxxOG_6o8U_Ve0&ll=-7.7266205181325756%2C110.35015698955078&z=12" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i>
+							<h3 class="mb-1">Lokasi Kantor</h3>
+							<p>Google Maps yang menampilkan data outlet kantor pos wilayah KCU Yogyakarta.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://docs.google.com/forms/d/1tgFXtt71sYQR0FnurmyLUzDx8Q1klsSSIAJsW0zTgP8/viewform?edit_requested=true" target="_blank">
+                            <i class="fas fa-scroll"></i>
+							<h3 class="mb-1">Resi RS</h3>
+							<p>Google Forms untuk keperluan kirim foto resi hasil cetak RS menggunakan printer thermal.</p>
+                        </a>
+                    </div>
+				</div>
 			</div>
-		</div>
-		
-        <div class="link-wrapper">
-			<a href="https://www.posindonesia.co.id/id" target="_blank">
-				<div class="menu">
-					<i class="fas fa-search-dollar"></i>
-					<h3>Cek Tarif</h3>
-					<p>Dipake buat cek tarif kiriman, apa aja juga ada semua!</p>
+			
+			<div class="category-section">
+				<h2>A p l i k a s i &nbsp;( A P K )</h2>
+			</div>	
+			
+			<div class="container">
+                <div class="link-wrapper">
+					<div class="menu">
+                        <a href="https://t.me/+qQ0v33dr3BhmNTc1" target="_blank">
+                            <i class="fab fa-telegram-plane"></i>
+							<h3 class="mb-1">Grup Pospay</h3>
+							<p>Forum (Telegram) untuk keperluan informasi tentang eror dan sejenisnya pada loket Pospay.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://drive.google.com/file/d/1l14tcCagh-EiP2IuytQwsleXWApA_3n7/view?usp=sharing" target="_blank">
+                            <i class="fas fa-luggage-cart"></i>
+							<h3 class="mb-1">Bagging</h3>
+							<p>Apk untuk keperluan bagging kiriman di loket.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://play.google.com/store/apps/details?id=adomobile.posindonesia.co.id" target="_blank">
+                            <i class="fas fa-map-marked-alt"></i>
+							<h3 class="mb-1">ADO</h3>
+							<p>Apk untuk keperluan tagging maupun visit customer.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://bit.ly/PGC571_UNIFE_237" target="_blank">
+                            <i class="fas fa-mobile-alt"></i>
+							<h3 class="mb-1">PGC unife v2.37</h3>
+							<p>Apk untuk transaksi bansos Sembako, PKH, Permakanan, & Geotaging.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://bit.ly/PGC571_beras_2_41" target="_blank">
+                            <i class="fas fa-mobile-alt"></i>
+							<h3 class="mb-1">PGC CBP v2.41</h3>
+							<p>Apk untuk transaksi bansos Beras.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://apps.apple.com/app/asabri-star/id1643470796" target="_blank">
+                            <i class="fas fa-user-check"></i>
+							<h3 class="mb-1">Asabri STAR</h3>
+							<p>Apk untuk presensi Pensiun Asabri.</p>
+                        </a>
+                    </div>
 				</div>
-			</a>
-			<a href="https://www.posindonesia.co.id/id/tracking" target="_blank">
-				<div class="menu">
-					<i class="fas fa-search"></i>
-					<h3>Lacak Kiriman</h3>
-					<p>Dipake buat lacak kiriman lah!</p>
-				</div>
-			</a>
-			<a href="https://emeterai.posfin.id/backoffice/login?return=backoffice" target="_blank">
-				<div class="menu">
-					<i class="fas fa-shopping-bag"></i>
-					<h3>Transaksi E-Meterai</h3>
-					<p>Dipake buat beli e-meterai. Lalu bayarnya pake Virtual Account di aplikasi Pospay.</p>
-				</div>
-			</a>
-			<a href="https://qrispos.posindonesia.co.id/auth/login" target="_blank">
-				<div class="menu">
-					<i class="fas fa-qrcode"></i>
-					<h3>QRIS Pos</h3>
-					<p>Dipake buat cek transaksi Qris loket.</p>
-				</div>
-			</a>
-			<a href="https://task.mile.app/login" target="_blank">
-				<div class="menu">
-					<i class="fas fa-mail-bulk"></i>
-					<h3>Mile App</h3>
-					<p>Dipake buat transaksi Mile loket.</p>
-				</div>
-			</a>
-			<a href="https://wahana.posindonesia.co.id/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-chalkboard-teacher"></i>
-					<h3>Wahana</h3>
-					<p>Dipake buat buka wahana. Wkwkwkw.</p>
-				</div>
-			</a>
-			<a href="https://edupos.posindonesia.co.id" target="_blank">
-				<div class="menu">
-					<i class="fas fa-graduation-cap"></i>
-					<h3>Edupos</h3>
-					<p>Dipake buat ujian, ujian dan ujian aja!</p>
-				</div>
-			</a>
-			<a href="https://pgcreport.posindonesia.co.id:8011/login" target="_blank">
-				<div class="menu">
-					<i class="fas fa-hands-helping"></i>
-					<h3>PGC Report</h3>
-					<p>Dipake buat cek transaksi bansos. Mumet dah!</p>
-				</div>
-			</a>
-			<a href="http://helpdesk.posindonesia.co.id/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-question-circle"></i>
-					<h3>Helpdesk</h3>
-					<p>Dipake buat cari tau kode error transaksi Pospay, RS. Tapi jaringan internal ya. </p>
-				</div>
-			</a>
-			<a href="https://board.mile.app/login?nextUrl=%2Fapp%2Fkibana%23%2Fdashboards%3F_g%3Dh%4091607d6#?_g=()" target="_blank">
-				<div class="menu">
-					<i class="fas fa-tachometer-alt"></i>
-					<h3>Kibana</h3>
-					<p>Dipake buat keperluan dashboard, cek transaksi dan lain sebagainya. Kalo kamu bisa ini, berarti pinter.</p>
-				</div>
-			</a>
-			<a href="https://lacak-ktpel.posindonesia.co.id:8183/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-id-card"></i>
-					<h3>Lacak KTP</h3>
-					<p>Dipake buat lacak KTP lah..</p>
-				</div>
-			</a>
-			<a href="https://inatrims.kemendag.go.id/" target="_blank">
-				<div class="menu">
-					<i class="fas fa-plane"></i>
-					<h3>INATRIMS</h3>
-					<p>Dipake buat informasi tentang regulasi teknis dan persyaratan mutu di negara tujuan ekspor.</p>
-				</div>
-			</a>
-			<a href="https://bit.ly/RacingFrontingKresun_2024" target="_blank">
-				<div class="menu">
-					<i class="fas fa-blind"></i>
-					<h3>Racing Kresun</h3>
-					<p>Dipake buat racing fronting kresun.</p>
-				</div>
-			</a>
-		</div>
-		
-        <div class="link-wrapper">
-			<div class="kategori">
-				<h3>~ GOOGLE DOC / FORM / MAPS ~</h3>
 			</div>
-		</div>
-		
-		<div class="link-wrapper">
-			<a href="https://bit.ly/4d9RZ51" target="_blank">
-				<div class="menu">
-					<i class="fas fa-flag-checkered"></i>
-					<h3>Dashboard Racing</h3>
-					<p>Dipake buat input data transaksi racing harian. Kalo kamu sering buka ini berarti rajin.<br>(Google Docs)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/forms/d/e/1FAIpQLScOVHTXpzQ1-KXxsAZ3W53vXaVDJ_T5cxrMfJpf8yPgRg3FVQ/viewform?usp=sf_link" target="_blank">
-				<div class="menu">
-					<i class="fas fa-hat-cowboy"></i>
-					<h3>Digitalisasi Pensiun</h3>
-					<p>Dipake buat input data pensiunan biar jadi rek Oren. Kayaknya sih gitu.<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/forms/d/e/1FAIpQLSejXdXJgl8Ur-7w3zasT-KjVAsd4bGxBDydsaMdQiKjI_NjcA/viewform" target="_blank">
-				<div class="menu">
-					<i class="far fa-check-square"></i>
-					<h3>Uji Petik</h3>
-					<p>Dipake buat uji petik kiriman.<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/forms/d/e/1FAIpQLSdY4uPGhX5s0NfWe3SkUs9R09iQOyTXFb6NL8CX3nhPJssitQ/viewform" target="_blank">
-				<div class="menu">
-					<i class="far fa-sticky-note"></i>
-					<h3>Warung Meterai</h3>
-					<p>Dipake buat upload penempelan stiker meterai.<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://bit.ly/LKPP_KO6" target="_blank">
-				<div class="menu">
-					<i class="fas fa-asterisk"></i>
-					<h3>LKPP Taspen</h3>
-					<p>Dipake buat diisi ^o^.<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/spreadsheets/d/1fACHc2Q1rCtAjg_FsCTTxXfwSE6tuVkaDhbaYA6IZIE/edit?gid=0#gid=0" target="_blank">
-				<div class="menu">
-					<i class="fas fa-people-arrows"></i>
-					<h3>Churn Customers</h3>
-					<p>Dipake buat nyari data customers sekitar kalian. Ingat, buat nganu pelanggan lho ya.<br>(Google Docs)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/spreadsheets/d/1d1f0_WQegAsBt21H2CUfnG3WZMIJQb_gtmfkfohOjgk/edit?gid=2145342305#gid=2145342305" target="_blank">
-				<div class="menu">
-					<i class="fas fa-clock"></i>
-					<h3>Jam Buka Loket</h3>
-					<p>Dipake buat pengawasan jam buka loket. Dipantau teroooosss!!<br>(Google Docs)</p>
-				</div>
-			</a>
-				<div class="menu">
-					<i class="fas fa-american-sign-language-interpreting"></i>
-					<h3>Pembukaan Agen</h3>
-					<p>Dipake buat pembukaan agen. Bakal nambah ngga tuh?<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://forms.gle/kkSrGcMgCXbUnUJJ8" target="_blank">
-				<div class="menu">
-					<i class="fas fa-store"></i>
-					<h3>Drop Point</h3>
-					<p>Dipake buat pengajuan Drop Point atau Oranger Toko. Nambah outlet dah!<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/forms/d/e/1FAIpQLSeujSIpHIgwvuy6yc6ESZh8EgkY3dZ2iRiGn1TZJ8lnAv2n1w/viewform?usp=sf_link" target="_blank">
-				<div class="menu">
-					<i class="fas fa-wallet"></i>
-					<h3>Transaksi Pospay</h3>
-					<p>Dipake buat entri transaksimu melalui pospay. Diabsen lagi ya kan?<br>(Google Forms)</p>
-				</div>
-			</a>
-			<a href="https://www.google.com/maps/d/edit?mid=1YEphrT19mB1sS_RW6nxxOG_6o8U_Ve0&ll=-7.7266205181325756%2C110.35015698955078&z=12" target="_blank">
-				<div class="menu">
-					<i class="fas fa-map-marker-alt"></i>
-					<h3>Lokasi Kantor</h3>
-					<p>Dipake buat cari tau alamat kantor pos!<br>(Maps)</p>
-				</div>
-			</a>
-			<a href="https://docs.google.com/forms/d/1tgFXtt71sYQR0FnurmyLUzDx8Q1klsSSIAJsW0zTgP8/viewform?edit_requested=true" target="_blank">
-				<div class="menu">
-					<i class="fas fa-scroll"></i>
-					<h3>Resi RS</h3>
-					<p>Dipake buat kirim foto resi hasil cetak RS pake printer thermal. Ngga tau buat apaan. <br>(Google Forms)</p>
-				</div>
-			</a>
-		</div>
-		
-        <div class="link-wrapper">
-			<div class="kategori">
-				<h3>~ A P L I K A S I &nbsp;&nbsp;( A P K ) ~</h3>
-			</div>
-		</div>
-		
-		<div class="link-wrapper">
-			<a href="https://t.me/+qQ0v33dr3BhmNTc1" target="_blank">
-				<div class="menu">
-					<i class="fab fa-telegram-plane"></i>
-					<h3>Grup Pospay</h3>
-					<p>Dipake buat nyari tau eror dan komplen sekalian.<br>(Telegram)</p>
-				</div>
-			</a>
-			<a href="https://apk.mile.app/v2/mile.apk" target="_blank">
-				<div class="menu">
-					<i class="fas fa-luggage-cart"></i>
-					<h3>Bagging</h3>
-					<p>Dipake buat bagging kiriman. <br>(Apk)</p>
-				</div>
-			</a>
-			<a href="https://play.google.com/store/apps/details?id=adomobile.posindonesia.co.id" target="_blank">
-				<div class="menu">
-					<i class="fas fa-map-marked-alt"></i>
-					<h3>ADO</h3>
-					<p>Dipake buat tagging visit. <br>(Apk)</p>
-				</div>
-			</a>
-			<a href="https://bit.ly/PGC571_UNIFE_237" target="_blank">
-				<div class="menu">
-					<i class="fas fa-mobile-alt"></i>
-					<h3>PGC unife v2.37</h3>
-					<p>Dipake buat Sembako, PKH, Permakanan, Geotaging. <br>(Apk)</p>
-				</div>
-			</a>
-			<a href="https://bit.ly/PGC571_beras_2_41" target="_blank">
-				<div class="menu">
-					<i class="fas fa-mobile-alt"></i>
-					<h3>PGC CBP v2.41</h3>
-					<p>Dipake buat beras. <br>(Apk)</p>
-				</div>
-			</a>
-			<a href="https://apps.apple.com/app/asabri-star/id1643470796" target="_blank">
-				<div class="menu">
-					<i class="fas fa-user-check"></i>
-					<h3>Asabri STAR</h3>
-					<p>Dipake absen pensiun. <br>(Apk)</p>
-				</div>
-			</a>
         </div>
     </div>
-	
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
     </a>
 
-	<script>
-		document.querySelector('.back-to-top').addEventListener('click', function (e) {
-			e.preventDefault();
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		});
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-		window.addEventListener('scroll', function () {
-			const backToTopButton = document.querySelector('.back-to-top');
-			if (window.scrollY > 300) {
-				backToTopButton.classList.add('show');
-			} else {
-				backToTopButton.classList.remove('show');
-			}
-		});
-	</script>
     <script>
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+	<script>
         const text = 'by : ';
         const text2 = '';
         const imageHTML = '<img src="assets/img/pakposkeren.png" alt="pakposkeren" height="20" style="vertical-align: middle; margin-top:-5px;">';
@@ -316,6 +564,27 @@
         }
 
         window.onload = typeWriter;
+    </script>
+	
+	<script>
+        document.getElementById("lacakButton").onclick = function() {
+            const resi = document.getElementById("resiInput").value;
+            if (resi) {
+                const url = `https://kibana.posindonesia.co.id:4433/x123449/3.php?id=${resi}`;
+                window.open(url, '_blank');
+                $('#lacakModal').modal('hide');
+            } else {
+                alert("Harap masukkan nomor resi.");
+            }
+        }
+
+        $('#lacakModal').on('show.bs.modal', function () {
+            $('body').css('padding-right', '0');
+        });
+
+        $('#lacakModal').on('hide.bs.modal', function () {
+            $('body').css('padding-right', '0');
+        });
     </script>
 </body>
 </html>
