@@ -19,7 +19,7 @@
 		}
 
 		.hero-background {
-			background: linear-gradient(to right, rgba(0, 0, 40, 0.9), rgba(40, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1534196511436-921a4e99f297?fit=crop&w=1500&q=80') no-repeat center center fixed;
+			background: linear-gradient(to right, rgba(0, 0, 30, 0.9), rgba(15, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1534196511436-921a4e99f297?fit=crop&w=1500&q=80') no-repeat center center fixed;
 			background-size: cover;
 			min-height: 100vh;
 			display: flex;
@@ -248,7 +248,7 @@
 <body>
     <div class="hero-background">
         <div>
-            <h1>Kakean Link Disatuin!</h1>
+            <h1>Kakehan Link Disatuin!</h1>
 			<marquee><i>Mumet scroll <sup>2</sup> nyari link di grup Whatsapp?? Hmm.. Nih dah disatuin disini. Makasih ya..! Yaa... Wkwkwkwk! </i> <i class="far fa-smile-beam"></i></marquee>
             <small id="typing-text"></small>
 	
@@ -259,7 +259,7 @@
 							<i class="fas fa-search"></i>
 						</span>
 					</div>
-					<input type="text" id="searchInput" class="form-control" placeholder="Cari aja disini...">
+					<input type="text" id="searchInput" class="form-control" placeholder="Saking akehnya, golek aja disini...">
 				</div>
 			</div>
 
@@ -269,45 +269,134 @@
             
 			<div class="container">
                 <div class="link-wrapper">
-                    <div class="menu">
-                        <a href="https://www.posindonesia.co.id/id" target="_blank">
-                            <i class="fas fa-search-dollar"></i>
-                            <h3 class="mb-1">Cek Tarif</h3>
-							<p>Web posindonesia.co.id untuk cek tarif kiriman.</p>
-                        </a>
-                    </div>
 					<div class="menu">
-                        <a href="https://www.posindonesia.co.id/id/tracking" target="_blank">
-                            <i class="fas fa-search"></i>
-                            <h3 class="mb-1">Lacak Kiriman #1</h3>
-							<p>Web posindonesia.co.id untuk lacak kiriman.</p>
-                        </a>
-                    </div>
-					
-					<div class="menu">
-						<a href="javascript:void(0)" id="openModal" data-toggle="modal" data-target="#lacakModal">
-							<i class="fas fa-search"></i>
-							<h3>Lacak Kiriman #2</h3>
-							<p>Web untuk lacak kiriman langsung isi nomor resi disini.</p>
+						<a href="javascript:void(0)" id="openModal1" data-toggle="modal" data-target="#cekTarif">
+							<i class="fas fa-search"></i><sup><span style="font-size:1.2rem;"><strong>Rp</strong></span></sup>
+							<h3 class="mb-1">Cek Tarif Kiriman</h3>
+							<p>Untuk cek tarif kiriman berdasarkan kodepos via web posindonesia.</p>
 						</a>
 					</div>
-					
-					<div class="modal fade" id="lacakModal" tabindex="-1" role="dialog" aria-labelledby="lacakModalLabel" aria-hidden="true">
+
+					<div class="modal fade" id="cekTarif" tabindex="-1" role="dialog" aria-labelledby="cekTarifLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="lacakModalLabel" style="color:black;"><i class="fas fa-truck"></i><sup><small><i class="fas fa-search"></i></small></sup> Lacak Kiriman</h5>
+									<h5 class="modal-title" id="cekTarifLabel" style="color:black;">
+										<i class="fas fa-search"></i><sup><span style="font-size:0.7rem;"><strong>Rp</strong></span></sup> Cek Tarif Kiriman Pos
+									</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+  
+								<div class="modal-body text-left">
+									<div class="form-group">
+										<label style="color:black;"><strong>Kodepos Pengirim :</strong></label>
+										<input type="text" id="kodePosPengirim" class="form-control" placeholder="Masukkan kodepos pengirim">
+									</div>
+									<div class="form-group">
+										<label style="color:black;"><strong>Kodepos Penerima :</strong></label>
+										<input type="text" id="kodePosPenerima" class="form-control" placeholder="Masukkan kodepos penerima">
+									</div>
+									<div class="form-group">
+										<label style="color:black;"><strong>Jenis Paket :</strong></label>
+										<select id="jenisPaket" class="form-control">
+											<option value="0">Surat</option>
+											<option value="1">Paket</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label style="color:black;"><strong>Berat (gram) :</strong></label>
+										<input type="number" id="berat" class="form-control" placeholder="Masukkan berat barang">
+									</div>
+									<div class="form-group" id="dimensionFields">
+										<label style="color:black;"><strong>Dimensi / Volumetrik (cm) :</strong></label>
+										<div id="dimensionInputs" class="d-flex">
+											<input type="number" id="panjang" class="form-control mr-3" placeholder="Panjang (cm)">
+											<input type="number" id="lebar" class="form-control mr-3" placeholder="Lebar (cm)">
+											<input type="number" id="tinggi" class="form-control" placeholder="Tinggi (cm)">
+										</div>
+									</div>
+									<div class="form-group">
+										<label style="color:black;"><strong>Nilai Harga Barang (Rp) :</strong></label>
+										<input type="number" id="nilaiBarang" class="form-control" placeholder="Masukkan nilai harga barang">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">
+										<i class="fas fa-chevron-left mr-1"></i> Batal
+									</button>
+									<button type="button" id="cekTarifButton" class="btn btn-info">
+										Tampilkan <i class="fas fa-search ml-1"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu">
+						<a href="javascript:void(0)" id="openModal2" data-toggle="modal" data-target="#lacakPos">
+							<i class="fas fa-search"></i><sup><i class="fas fa-shipping-fast" style="font-size:1rem;"></i></sup>
+							<h3 class="mb-1">Lacak Kiriman #1 (Web Pci)</h3>
+							<p>Untuk pelacakan kiriman via web posindonesia. Hasil lacak bisa buat customers.</p>
+						</a>
+					</div>
+					
+					<div class="modal fade" id="lacakPos" tabindex="-1" role="dialog" aria-labelledby="lacakPosLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="lacakPosLabel" style="color:black;">
+										<i class="fas fa-search"></i><sup><i class="fas fa-shipping-fast" style="font-size:0.7rem;"></i></sup> Lacak Kiriman <small>(Web Pci)</small>
+									</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body text-left">
-									<label style="color:black;">Masukkan Nomor Resi :</label>
-									<input type="text" id="resiInput" class="form-control" placeholder="">
+									<div class="form-group">
+										<label style="color:black;"><strong>Nomor Resi :</strong></label>
+										<input type="text" id="resiInput" class="form-control" placeholder="Masukkan nomor resi">
+										<small style="color:green; font-weight: 500;"><i class="fas fa-exclamation-triangle"></i> Hasil lacak kiriman boleh di screenshot untuk Customers.</small>
+									</div>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-chevron-left mr-1"></i> Batal</button>
-									<button type="button" id="lacakButton" class="btn btn-primary">Lacak <i class="fas fa-search ml-1"></i></button>
+									<button type="button" id="lacakPosButton" class="btn btn-info">Tampilkan <i class="fas fa-search ml-1"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="menu">
+						<a href="javascript:void(0)" id="openModal3" data-toggle="modal" data-target="#lacakKibana">
+							<i class="fas fa-search"></i><sup><i class="fas fa-shipping-fast" style="font-size:1rem;"></i></sup>
+							<h3 class="mb-1">Lacak Kiriman #2 (Kibana)</h3>
+							<p>Untuk pelacakan kiriman via kibana. Hasil lacak khusus untuk internal pos.</p>
+						</a>
+					</div>
+					
+					<div class="modal fade" id="lacakKibana" tabindex="-1" role="dialog" aria-labelledby="lacakKibanaLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="lacakKibanaLabel" style="color:black;">
+										<i class="fas fa-search"></i><sup><i class="fas fa-shipping-fast" style="font-size:0.7rem;"></i></sup> Lacak Kiriman <small>(Web Kibana)</small>
+									</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body text-left">
+									<div class="form-group">
+										<label style="color:black;"><strong>Nomor Resi :</strong></label>
+										<input type="text" id="resiInput" class="form-control" placeholder="Masukkan nomor resi">
+										<small style="color:red; font-weight: 500;"><i class="fas fa-exclamation-triangle mr-1"></i> Hasil lacak kiriman khusus internal Pos saja.</small>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-chevron-left mr-1"></i> Batal</button>
+									<button type="button" id="lacakKibanaButton" class="btn btn-info">Tampilkan <i class="fas fa-search ml-1"></i></button>
 								</div>
 							</div>
 						</div>
@@ -332,6 +421,27 @@
                             <i class="fas fa-mail-bulk"></i>
                             <h3 class="mb-1">Mile App</h3>
 							<p>Web untuk transaksi Mile loket.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="http://aki.posindonesia.co.id/" target="_blank">
+                            <i class="fas fa-mail-bulk"></i>
+                            <h3 class="mb-1">AKI</h3>
+							<p>Web Aplikasi Kiriman Internasional untuk transaksi prangko LN.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="http://aki.posindonesia.co.id/live/ref/" target="_blank">
+                            <i class="fas fa-list-ol"></i>
+                            <h3 class="mb-1">Daftar HSCODE</h3>
+							<p>Web AKI pencarian HSCODE berdasarkan BTKI 2022.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="http://aki.posindonesia.co.id/live/ref/" target="_blank">
+                            <i class="fas fa-search"></i><sup><i class="fas fa-plane" style="font-size:1rem;"></i></sup>
+                            <h3 class="mb-1">Lacak Kiriman AKI</h3>
+							<p>Web untuk cek status kiriman internasional.</p>
                         </a>
                     </div>
 					<div class="menu">
@@ -430,8 +540,15 @@
 					<div class="menu">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdY4uPGhX5s0NfWe3SkUs9R09iQOyTXFb6NL8CX3nhPJssitQ/viewform" target="_blank">
                             <i class="far fa-sticky-note"></i>
-					<h3 class="mb-1">Warung Meterai</h3>
-					<p>Google Forms untuk laporan penempelan stiker meterai.</p>
+							<h3 class="mb-1">Warung Meterai</h3>
+							<p>Google Forms untuk laporan penempelan stiker meterai.</p>
+                        </a>
+                    </div>
+					<div class="menu">
+                        <a href="https://forms.gle/Bg1f321cLw4BZSxL9" target="_blank">
+                            <i class="fas fa-mug-hot"></i>
+							<h3 class="mb-1">Pengajuan Cuti</h3>
+							<p>Google Forms untuk pengajuan cuti.</p>
                         </a>
                     </div>
 					<div class="menu">
@@ -616,24 +733,108 @@
 
         window.onload = typeWriter;
     </script>
-	
+
+<script>
+document.getElementById("dimensionFields").style.display = "none";
+document.getElementById("dimensionInputs").style.display = "none";
+
+document.getElementById("jenisPaket").addEventListener("change", function() {
+    const jenisPaket = document.getElementById("jenisPaket").value;
+
+    if (jenisPaket === "1") {
+        // Paket selected, show dimension fields
+        document.getElementById("dimensionFields").style.display = "block";
+        document.getElementById("dimensionInputs").style.display = "block";
+    } else {
+        // Surat selected, hide dimension fields
+        document.getElementById("dimensionFields").style.display = "none";
+        document.getElementById("dimensionInputs").style.display = "none";
+    }
+});
+
+    document.getElementById("cekTarifButton").onclick = function() {
+        const kodePosPengirim = document.getElementById("kodePosPengirim").value;
+        const kodePosPenerima = document.getElementById("kodePosPenerima").value;
+        const jenisPaket = document.getElementById("jenisPaket").value;
+        const berat = document.getElementById("berat").value;
+        const tinggi = document.getElementById("tinggi").value;
+        const lebar = document.getElementById("lebar").value;
+        const panjang = document.getElementById("panjang").value;
+        const nilaiBarang = document.getElementById("nilaiBarang").value;
+
+        // Validation
+        if (!kodePosPengirim || !kodePosPenerima || !berat || !jenisPaket) {
+            alert("Harap isi semua data yang wajib diisi.");
+            return;
+        }
+
+        if (jenisPaket === "1" && (!tinggi || !lebar || !panjang)) {
+            alert("Harap isi dimensi barang untuk paket.");
+            return;
+        }
+
+        // Build URL with dynamic query params
+        let url = 'https://www.posindonesia.co.id/id/check-tarif?';
+        url += `kodePosPengirim=${kodePosPengirim}`;
+        url += kodePosPenerima ? `&kodePosPenerima=${kodePosPenerima}` : '';
+        url += berat ? `&berat=${berat}` : '';
+        url += jenisPaket ? `&jenisPaket=${jenisPaket}` : '';
+        url += tinggi ? `&tinggi=${tinggi}` : '';
+        url += lebar ? `&lebar=${lebar}` : '';
+        url += panjang ? `&panjang=${panjang}` : '';
+        url += nilaiBarang ? `&nilaiBarang=${nilaiBarang}` : '';
+
+        window.open(url, '_blank');
+        $('#cekTarif').modal('hide');
+    }
+
+    $('#cekTarif').on('show.bs.modal', function () {
+        $('body').css('padding-right', '0');
+    });
+
+    $('#cekTarif').on('hide.bs.modal', function () {
+        $('body').css('padding-right', '0');
+    });
+</script>
+
 	<script>
-        document.getElementById("lacakButton").onclick = function() {
+        document.getElementById("lacakPosButton").onclick = function() {
             const resi = document.getElementById("resiInput").value;
             if (resi) {
-                const url = `https://kibana.posindonesia.co.id:4433/x123449/3.php?id=${resi}`;
+                const url = `https://www.posindonesia.co.id/id/tracking/${resi}`;
                 window.open(url, '_blank');
-                $('#lacakModal').modal('hide');
+                $('#lacakPos').modal('hide');
             } else {
                 alert("Harap masukkan nomor resi.");
             }
         }
 
-        $('#lacakModal').on('show.bs.modal', function () {
+        $('#lacakPos').on('show.bs.modal', function () {
             $('body').css('padding-right', '0');
         });
 
-        $('#lacakModal').on('hide.bs.modal', function () {
+        $('#lacakPos').on('hide.bs.modal', function () {
+            $('body').css('padding-right', '0');
+        });
+    </script>
+	
+	<script>
+        document.getElementById("lacakKibanaButton").onclick = function() {
+            const resi = document.getElementById("resiInput").value;
+            if (resi) {
+                const url = `https://kibana.posindonesia.co.id:4433/x123449/3.php?id=${resi}`;
+                window.open(url, '_blank');
+                $('#lacakKibana').modal('hide');
+            } else {
+                alert("Harap masukkan nomor resi.");
+            }
+        }
+
+        $('#lacakKibana').on('show.bs.modal', function () {
+            $('body').css('padding-right', '0');
+        });
+
+        $('#lacakKibana').on('hide.bs.modal', function () {
             $('body').css('padding-right', '0');
         });
     </script>
