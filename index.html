@@ -146,6 +146,11 @@
 			padding: 20px;
 			width: 100%;
 		}
+		
+		.swal-small-icon {
+			font-size: 15px;
+			margin-bottom: -15px;
+		}
 
 		@media (min-width: 992px) {
 			.link-wrapper {
@@ -205,6 +210,11 @@
 			
 			.menu p {
 				font-size: 0.7rem;
+			}
+			
+			.swal-small-icon {
+				font-size: 10px;
+				margin-bottom: -15px;
 			}
 		}
 
@@ -294,13 +304,13 @@
 								</div>
 								<div class="modal-body text-left">
 									<div class="form-group">
-										<label style="color:black;"><strong>Kodepos Asal :</strong></label>
+										<label style="color:black;"><strong>Kodepos Asal <span style="color:red">*</span> :</strong></label>
 										<input type="text" id="kodePosPengirim" class="form-control" placeholder="Masukin kodepos pengirim">
 									</div>
 									<div class="form-group">
-										<label style="color:black;"><strong>Kodepos Tujuan :</strong></label>
+										<label style="color:black;"><strong>Kodepos Tujuan <span style="color:red">*</span> :</strong></label>
 										<input type="text" id="kodePosPenerima" class="form-control" placeholder="Masukin kodepos penerima">
-										<small style="color:blue;">Untuk tujuan luar negeri, masukin kode negara.</small>
+										<small style="color:teal;"><i class="fas fa-exclamation-circle ml-1 mr-1"></i> Untuk tujuan luar negeri, masukin kode negara.</small>
 									</div>
 									<div class="form-group">
 										<label style="color:black;"><strong>Jenis Paket :</strong></label>
@@ -310,11 +320,11 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<label style="color:black;"><strong>Berat (gram) :</strong></label>
+										<label style="color:black;"><strong>Berat (gram) <span style="color:red">*</span> :</strong></label>
 										<input type="number" id="berat" class="form-control" placeholder="Masukin berat barang">
 									</div>
 									<div class="form-group" id="dimensionFields">
-										<label style="color:black;"><strong>Dimensi / Volumetrik (cm) :</strong></label>
+										<label style="color:black;"><strong>Dimensi / Volumetrik (cm) <span style="color:red">*</span> :</strong></label>
 										<div id="dimensionInputs" class="d-flex">
 											<input type="number" id="panjang" class="form-control mr-3" placeholder="Panjang">
 											<input type="number" id="lebar" class="form-control mr-3" placeholder="Lebar">
@@ -359,9 +369,9 @@
 								</div>
 								<div class="modal-body text-left">
 									<div class="form-group">
-										<label style="color:black;"><strong>Nomor Resi :</strong></label>
+										<label style="color:black;"><strong>Nomor Resi <span style="color:red">*</span> :</strong></label>
 										<input type="text" id="resiInput" class="form-control" placeholder="Masukin nomor resi">
-										<small style="color:green; font-weight: 500;"><i class="fas fa-exclamation-triangle"></i> Hasil lacak kiriman boleh di screenshot untuk Customers. Web ini jangan di share ke publik ya..</small>
+										<small style="color:teal; "><i class="fas fa-exclamation-triangle ml-1 mr-1"></i> Hasil lacak boleh di screenshot untuk Customers.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web ini jangan di share ke publik ya..</small>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -393,9 +403,9 @@
 								</div>
 								<div class="modal-body text-left">
 									<div class="form-group">
-										<label style="color:black;"><strong>Nomor Resi :</strong></label>
+										<label style="color:black;"><strong>Nomor Resi <span style="color:red">*</span> :</strong></label>
 										<input type="text" id="resiInput" class="form-control" placeholder="Masukin nomor resi">
-										<small style="color:red; font-weight: 500;"><i class="fas fa-exclamation-triangle mr-1"></i> Hasil lacak kiriman khusus internal Pos saja. Jangan dishare ya..</small>
+										<small style="color:red; "><i class="fas fa-exclamation-triangle ml-1 mr-1"></i> Hasil lacak khusus internal Pos. Jangan dishare ya..</small>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -752,6 +762,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const backToTopButton = document.querySelector('.back-to-top');
@@ -839,12 +850,32 @@
 
 			// Validation
 			if (!kodePosPengirim || !kodePosPenerima || !berat || !jenisPaket) {
-				alert("Isi dulu semua data yg wajib diisi!");
+				Swal.fire({
+				  icon: 'error', // ('success', 'error', 'warning', 'info', 'question')
+				  title: '<span style="font-size:20px; padding-bottom:-50px;">Weleh..</span>',
+				  text: 'Isi dulu dong, semua data yang wajib diisi!',
+				  showConfirmButton: true,
+				  confirmButtonText: 'OK',
+				  customClass: {
+					icon: 'swal-small-icon'
+				  }
+				});
+
 				return;
 			}
 
 			if (jenisPaket === "1" && (!tinggi || !lebar || !panjang)) {
-				alert("Isi dimensi paket dulu dong!.");
+				Swal.fire({
+				  icon: 'error', // ('success', 'error', 'warning', 'info', 'question')
+				  title: '<span style="font-size:20px;">Weleh..</span>',
+				  text: 'Isi dimensi paket dulu dong!',
+				  showConfirmButton: true,
+				  confirmButtonText: 'OK',
+				  customClass: {
+					icon: 'swal-small-icon'
+				  }
+				});
+				
 				return;
 			}
 
@@ -880,7 +911,16 @@
                 window.open(url, '_blank');
                 $('#lacakPos').modal('hide');
             } else {
-                alert("Masukin nomor resi dulu dong!");
+				Swal.fire({
+				  icon: 'error', // ('success', 'error', 'warning', 'info', 'question')
+				  title: '<span style="font-size:20px;">Weleh..</span>',
+				  text: 'Masukin nomor resi dulu dong!',
+				  showConfirmButton: true,
+				  confirmButtonText: 'OK',
+				  customClass: {
+					icon: 'swal-small-icon'
+				  }
+				});
             }
         }
 
@@ -901,7 +941,16 @@
                 window.open(url, '_blank');
                 $('#lacakKibana').modal('hide');
             } else {
-                alert("Masukin nomor resi dulu dong!");
+				Swal.fire({
+				  icon: 'error', // ('success', 'error', 'warning', 'info', 'question')
+				  title: '<span style="font-size:20px;">Weleh..</span>',
+				  text: 'Masukin nomor resi dulu dong!',
+				  showConfirmButton: true,
+				  confirmButtonText: 'OK',
+				  customClass: {
+					icon: 'swal-small-icon'
+				  }
+				});
             }
         }
 
