@@ -374,7 +374,7 @@
 								<div class="modal-body text-left">
 									<div class="form-group">
 										<label style="color:black;"><strong>Nomor Resi <span style="color:red">*</span> :</strong></label>
-										<input type="text" id="resiInput" class="form-control" placeholder="Masukin nomor resi">
+										<input type="text" id="resiInput1" class="form-control" placeholder="Masukin nomor resi">
 										<small style="color:teal; "><i class="fas fa-exclamation-triangle ml-1 mr-1"></i> Hasil lacak boleh di screenshot untuk Customers.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web ini jangan di share ke publik ya..</small>
 									</div>
 									<small style="color:red;"><i><strong>* Wajib diisi.</strong></i></small>
@@ -409,7 +409,7 @@
 								<div class="modal-body text-left">
 									<div class="form-group">
 										<label style="color:black;"><strong>Nomor Resi <span style="color:red">*</span> :</strong></label>
-										<input type="text" id="resiInput" class="form-control" placeholder="Masukin nomor resi">
+										<input type="text" id="resiInput2" class="form-control" placeholder="Masukin nomor resi">
 										<small style="color:red; "><i class="fas fa-exclamation-triangle ml-1 mr-1"></i> Hasil lacak khusus internal Pos. Jangan dishare ya..</small>
 									</div>
 									<small style="color:red;"><i><strong>* Wajib diisi.</strong></i></small>
@@ -1009,7 +1009,7 @@
 
 	<script>
         document.getElementById("lacakPosButton").onclick = function() {
-            const resi = document.getElementById("resiInput").value;
+            const resi = document.getElementById("resiInput1").value;
             if (resi) {
                 const url = `https://www.posindonesia.co.id/id/tracking/${resi}`;
                 window.open(url, '_blank');
@@ -1039,7 +1039,7 @@
 	
 	<script>
         document.getElementById("lacakKibanaButton").onclick = function() {
-            const resi = document.getElementById("resiInput").value;
+            const resi = document.getElementById("resiInput2").value;
             if (resi) {
                 const url = `https://kibana.posindonesia.co.id:4433/x123449/3.php?id=${resi}`;
                 window.open(url, '_blank');
